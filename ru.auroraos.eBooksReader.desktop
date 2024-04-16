@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=ru.auroraos.eBooksReader
+Exec=/usr/bin/ru.auroraos.eBooksReader
+Name=Template
+Name[ru]=Шаблон
+
+[X-Application]
+Permissions=PushNotifications;DeviceInfo;Audio;Internet;Location;MediaIndexing;RemovableMedia;UserDirs;WebView
+OrganizationName=ru.auroraos
+ApplicationName=eBooksReader
+ExecDBus=/usr/bin/ru.auroraos.eBooksReader
