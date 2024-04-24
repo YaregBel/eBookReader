@@ -14,14 +14,9 @@ public:
     explicit Class1(QObject *parent = nullptr);
     ~Class1();
 
-    Q_INVOKABLE void printPath() {
-        qDebug() << "App path : " << qApp->applicationDirPath();
-        qDebug() << "ldksajf;sjadfl";};
-    Q_INVOKABLE QString getTextSize() {return fieldValue; }
+    Q_INVOKABLE void printPath() {qDebug() << "App path : " << qApp->applicationDirPath();};
 
 private:
-    int textSize {18};
-    QString fieldValue {"Текст изменен!"};
 
 
 };

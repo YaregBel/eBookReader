@@ -42,15 +42,7 @@ Page {
             Button {
                 objectName: "findButton"
                 text: "Изменить"
-                onClicked: Class1.printPath;
-
-            }
-
-            Label
-            {
-                    text: Class1.getTextSize();
-                    font.pixelSize: 15;
-                    font.family: "Verdana"
+                onClicked: Class1.printPath();
             }
 
 
