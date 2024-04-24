@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QDebug>
 #include <QApplication>
+#include <iostream>
 
 
 class Class1: public QObject
@@ -14,7 +15,10 @@ public:
     explicit Class1(QObject *parent = nullptr);
     ~Class1();
 
-    Q_INVOKABLE void printPath() {qDebug() << "App path : " << qApp->applicationDirPath();};
+    Q_INVOKABLE void printPath() {
+        qDebug() << "App path : " << qApp->applicationDirPath();
+        std::cout << "Button click" << std::endl;
+    };
 
 private:
 
