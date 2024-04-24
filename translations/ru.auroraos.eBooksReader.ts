@@ -42,9 +42,14 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="10"/>
-        <source>Template</source>
-        <translation>Template</translation>
+        <location filename="../qml/pages/MainPage.qml" line="21"/>
+        <source>freakyReader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="37"/>
+        <source>Ниже будет кнопка</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
