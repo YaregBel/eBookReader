@@ -11,4 +11,3 @@ Class1::Class1(QObject *parent) : QObject{parent}{
 }
 
 Class1::~Class1(){};
-

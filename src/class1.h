@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QDebug>
 #include <QApplication>
+#include <iostream>
+
+#include <QDir>
 
 
 class Class1: public QObject
@@ -15,13 +18,18 @@ public:
     ~Class1();
 
     Q_INVOKABLE void printPath() {
-        qDebug() << "App path : " << qApp->applicationDirPath();
-        qDebug() << "ldksajf;sjadfl";};
-    Q_INVOKABLE QString getTextSize() {return fieldValue; }
+        QDir dir = QDir::root();                 // "/"
+        if (!dir.cd("tmp")) {                    // "/tmp"
+            qWarning("Cannot find the \"/tmp\" directory");
+        } else {
+            QFile file(dir.filePath("ex1.txt")); // "/tmp/ex1.txt"
+            if (!file.open(QIODevice::ReadWrite))
+                qWarning("Cannot create the file");
+        }
+    };
+
 
 private:
-    int textSize {18};
-    QString fieldValue {"Текст изменен!"};
 
 
 };

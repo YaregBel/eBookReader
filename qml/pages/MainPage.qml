@@ -6,6 +6,8 @@ Page {
     objectName: "mainPage"
     allowedOrientations: Orientation.All
 
+    Class1{id:class1}
+
     SilicaFlickable {
         objectName: "flickable"
         anchors.fill: parent
@@ -40,19 +42,10 @@ Page {
             }
 
             Button {
-                objectName: "findButton"
-                text: "Изменить"
-                onClicked: Class1.printPath;
-
+                objectName: "button1"
+                text: "Кнопка 1"
+                onClicked: class1.printPath();
             }
-
-            Label
-            {
-                    text: Class1.getTextSize();
-                    font.pixelSize: 15;
-                    font.family: "Verdana"
-            }
-
 
         }
     }
