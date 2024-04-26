@@ -42,13 +42,18 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="21"/>
+        <location filename="../qml/pages/MainPage.qml" line="23"/>
         <source>freakyReader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="37"/>
+        <location filename="../qml/pages/MainPage.qml" line="39"/>
         <source>Ниже будет кнопка</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="63"/>
+        <source>После нажатия на кнопку, здесь будет отображаться переданное значение</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

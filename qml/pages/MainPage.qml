@@ -6,6 +6,8 @@ Page {
     objectName: "mainPage"
     allowedOrientations: Orientation.All
 
+    Class1{id: class1}
+
     SilicaFlickable {
         objectName: "flickable"
         anchors.fill: parent
@@ -40,9 +42,34 @@ Page {
             }
 
             Button {
-                objectName: "findButton"
-                text: "Изменить"
-                onClicked: Class1.printPath();
+                objectName: "button1"
+                text: "Кнопка 1"
+                onClicked: class1.changeValue(1);
+            }
+            Button {
+                objectName: "button2"
+                text: "Кнопка 2"
+                onClicked: class1.changeValue(2);
+            }
+            Button {
+                objectName: "button3"
+                text: "Кнопка 3"
+                onClicked: class1.changeValue(3);
+            }
+
+            Label {
+                id: lButOper
+                x: Theme.horizontalPageMargin
+                text: qsTr("После нажатия на кнопку, здесь будет отображаться переданное значение")
+                color: Theme.secondaryHighlightColor
+                font.pixelSize: Theme.fontSizeMedium
+
+                Connections {
+                    target: class1
+                    // Form like this "on + ValueChange"
+                    // (first letter of method must be capitalized)
+                    onValueChanged: lButOper.text = s;
+                }
             }
 
 

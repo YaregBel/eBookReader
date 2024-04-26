@@ -15,10 +15,17 @@ public:
     explicit Class1(QObject *parent = nullptr);
     ~Class1();
 
-    Q_INVOKABLE void printPath() {
-        qDebug() << "App path : " << qApp->applicationDirPath();
-        std::cout << "Button click" << std::endl;
-    };
+//    Q_INVOKABLE void printPath() {
+//        qDebug() << "App path : " << qApp->applicationDirPath();
+//        std::cout << "Button click" << std::endl;
+//    };
+
+signals:
+    Q_INVOKABLE void valueChanged(QString s);
+
+public slots:
+    void changeValue(int a);
+
 
 private:
 
