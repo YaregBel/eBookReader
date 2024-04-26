@@ -51,10 +51,5 @@
         <source>Ниже будет кнопка</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="63"/>
-        <source>После нажатия на кнопку, здесь будет отображаться переданное значение</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 </TS>
