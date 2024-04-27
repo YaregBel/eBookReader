@@ -51,5 +51,10 @@
         <source>Ниже будет кнопка</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="53"/>
+        <source>Информация о файле.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

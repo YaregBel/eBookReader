@@ -44,7 +44,20 @@ Page {
             Button {
                 objectName: "button1"
                 text: "Кнопка 1"
-                onClicked: class1.printPath();
+                onClicked: class1.printFile();
+            }
+
+            Label{
+                id: labelForPrinting
+                x: Theme.horizontalPageMargin;
+                text: qsTr("Информация о файле.")
+                color: Theme.secondaryHighlightColor
+                font.pixelSize: Theme.fontSizeMedium
+
+                Connections{
+                    target: class1
+                    onGetString: labelForPrinting.text = str1;
+                }
             }
 
         }

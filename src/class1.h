@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QApplication>
 #include <iostream>
+#include <QFile>
 
 #include <QDir>
 
@@ -17,16 +18,12 @@ public:
     explicit Class1(QObject *parent = nullptr);
     ~Class1();
 
-    Q_INVOKABLE void printPath() {
-        QDir dir = QDir::root();                 // "/"
-        if (!dir.cd("tmp")) {                    // "/tmp"
-            qWarning("Cannot find the \"/tmp\" directory");
-        } else {
-            QFile file(dir.filePath("ex1.txt")); // "/tmp/ex1.txt"
-            if (!file.open(QIODevice::ReadWrite))
-                qWarning("Cannot create the file");
-        }
-    };
+
+signals:
+    void getString(QString str1);
+
+public slots:
+    void printFile();
 
 
 private:
