@@ -7,10 +7,12 @@ PKGCONFIG += \
 
 SOURCES += \
     src/class1.cpp \
+    src/fileprocessing.cpp \
     src/main.cpp \
 
 HEADERS += \
-    src/class1.h
+    src/class1.h \
+    src/fileprocessing.h
 
 DISTFILES += \
     rpm/ru.auroraos.eBooksReader.spec \
