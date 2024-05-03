@@ -17,7 +17,7 @@ public:
     ~fileProcessing();
 
     void open();
-    void readFb2(QString filePath);
+    void readFb2(QFile *pointerToFile);
 
 signals:
 
