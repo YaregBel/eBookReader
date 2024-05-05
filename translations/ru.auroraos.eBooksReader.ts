@@ -57,4 +57,12 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>ReadingPage</name>
+    <message>
+        <location filename="../qml/pages/ReadingPage.qml" line="20"/>
+        <source>ZV___Приятного чтения___ZV</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

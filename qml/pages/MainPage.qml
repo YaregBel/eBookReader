@@ -60,6 +60,12 @@ Page {
                 }
             }
 
+            Button{
+                objectName: "openReadingPage"
+                text: "Перейти к книге"
+                onClicked: pageStack.push(Qt.resolvedUrl("ReadingPage.qml"))
+            }
+
         }
     }
 }
