@@ -18,6 +18,7 @@ public:
 
     void open();
     void readFb2(QFile *pointerToFile);
+    bool fileExists(QString path);
 
 signals:
 

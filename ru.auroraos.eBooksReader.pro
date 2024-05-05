@@ -15,6 +15,7 @@ HEADERS += \
     src/fileprocessing.h
 
 DISTFILES += \
+    qml/pages/ReadingPage.qml \
     rpm/ru.auroraos.eBooksReader.spec \
 
 AURORAAPP_ICONS = 86x86 108x108 128x128 172x172
