@@ -9,18 +9,21 @@
 
 #include <QDir>
 
-class fileProcessing : public QObject
+class FileProcessing : public QObject
 {
     Q_OBJECT
 public:
-    explicit fileProcessing(QObject *parent = nullptr);
-    ~fileProcessing();
+    explicit FileProcessing(QObject *parent = nullptr);
+    ~FileProcessing();
 
-    void open();
-    void readFb2(QFile *pointerToFile);
+    Q_INVOKABLE void open();
+    QString readFb2(QFile *pointerToFile);
     bool fileExists(QString path);
 
 signals:
+
+public slots:
+
 
 };
 

@@ -8,14 +8,14 @@
 
 #include <QtCore>
 
-fileProcessing::fileProcessing(QObject *parent) : QObject(parent)
+FileProcessing::FileProcessing(QObject *parent) : QObject(parent)
 {
 
 }
 
-fileProcessing::~fileProcessing(){}
+FileProcessing::~FileProcessing(){}
 
-void fileProcessing::open(){
+void FileProcessing::open(){
     //QString name = QFileDialog::getOpenFileName(this, "открыть", QDir::currentPath(), "" );
     //QString name = "/home/defaultuser/Documents/123.fb2"; -- the following code causing an error.
 
@@ -37,13 +37,13 @@ void fileProcessing::open(){
     }
 }
 
-void fileProcessing::readFb2(QFile *pointerToFile){
+QString FileProcessing::readFb2(QFile *pointerToFile){
 
     if (!pointerToFile->open(QIODevice::ReadOnly | QIODevice::Text))
     {
         // В дальнейнем заменить на вспылывающее предупреждение
         qDebug() << "файл не открыт";
-        return;
+        return "";
     }
     else{
 
@@ -119,10 +119,12 @@ void fileProcessing::readFb2(QFile *pointerToFile){
                     break;
                 }
             }
+
+        return book;
     }
 }
 
-bool fileProcessing::fileExists(QString path) {
+bool FileProcessing::fileExists(QString path) {
     QFileInfo check_file(path);
     // check if file exists and if yes: Is it really a file and no directory?
     if (check_file.exists() && check_file.isFile()) {

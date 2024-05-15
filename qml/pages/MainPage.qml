@@ -1,12 +1,15 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import ru.omp.SimpleBLE 1.0
+import ru.omp.FileProcessing 1.0
 
 Page {
     objectName: "mainPage"
     allowedOrientations: Orientation.All
 
     Class1{id:class1}
+
+    FileProcessing{id:fileProcessing}
 
     SilicaFlickable {
         objectName: "flickable"

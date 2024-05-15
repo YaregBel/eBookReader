@@ -1,9 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import ru.omp.FileProcessing 1.0
 
 Page {
     objectName: "mainPage"
     allowedOrientations: Orientation.All
+
+    FileProcessing {id:fileProcessing}
 
     SilicaFlickable {
         objectName: "flickable"
@@ -19,13 +22,19 @@ Page {
                 objectName: "pageHeader"
                 title: qsTr("ZV___Приятного чтения___ZV")
             }
-            Text{
-                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-                wrapMode: Text.WordWrap
-                width: parent.width
-                color: "#FFFFFF";
 
+            TextArea{
+                text:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                readOnly: true;
+            }
 
+            Button{
+                onClicked: fileProcessing.open();
+            }
+
+            TextArea{
+                text:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                readOnly: true;
             }
 
         }
