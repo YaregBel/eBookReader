@@ -7,12 +7,12 @@ PKGCONFIG += \
 
 SOURCES += \
     src/class1.cpp \
-    src/fileprocessing.cpp \
+    src/filereader.cpp \
     src/main.cpp \
 
 HEADERS += \
     src/class1.h \
-    src/fileprocessing.h
+    src/filereader.h
 
 DISTFILES += \
     qml/pages/ReadingPage.qml \

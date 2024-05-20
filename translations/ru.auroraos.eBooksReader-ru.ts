@@ -42,17 +42,17 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="26"/>
+        <location filename="../qml/pages/MainPage.qml" line="23"/>
         <source>freakyReader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="42"/>
+        <location filename="../qml/pages/MainPage.qml" line="39"/>
         <source>Ниже будет кнопка</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="56"/>
+        <location filename="../qml/pages/MainPage.qml" line="53"/>
         <source>Информация о файле.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -60,7 +60,7 @@
 <context>
     <name>ReadingPage</name>
     <message>
-        <location filename="../qml/pages/ReadingPage.qml" line="23"/>
+        <location filename="../qml/pages/ReadingPage.qml" line="28"/>
         <source>ZV___Приятного чтения___ZV</source>
         <translation type="unfinished"></translation>
     </message>

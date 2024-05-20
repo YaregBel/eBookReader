@@ -1,7 +1,7 @@
 #include <auroraapp.h>
 #include <QtQuick>
 #include "class1.h"
-#include "fileprocessing.h"
+#include "filereader.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     application->setApplicationName(QStringLiteral("eBooksReader"));
 
     qmlRegisterType<Class1>("ru.omp.SimpleBLE", 1, 0, "Class1");
-    qmlRegisterType<FileProcessing>("ru.omp.FileProcessing", 1, 0, "FileProcessing");
+    qmlRegisterType<FileReader>("ru.omp.FileReader", 1, 0, "FileReader");
 
     QScopedPointer<QQuickView> view(Aurora::Application::createView());
     view->setSource(Aurora::Application::pathTo(QStringLiteral("qml/eBooksReader.qml")));
