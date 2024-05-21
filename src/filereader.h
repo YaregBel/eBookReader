@@ -17,7 +17,7 @@ public:
     ~FileReader();
 
     //Q_INVOKABLE void open();
-    QString readFb2(QFile *pointerToFile);
+    bool readFb2(QFile *pointerToFile);
     bool fileExists(QString path);
 
 private:
