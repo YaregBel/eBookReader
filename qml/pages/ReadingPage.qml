@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import ru.omp.FileReader 1.0
 
+
 Page {
     objectName: "mainPage"
     allowedOrientations: Orientation.All
@@ -28,21 +29,16 @@ Page {
                 title: qsTr("ZV___Приятного чтения___ZV")
             }
 
-            TextArea{
-                text:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-                readOnly: true;
-            }
-
             Button{
                 onClicked: fileReader.open();
                 text: "click me!"
             }
 
 
-            TextArea{
+            Text{
                 id: printText
                 text:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-                readOnly: true;
+                //readOnly: true;
 
                 Connections {
                         target: fileReader // Указываем целевое соединение

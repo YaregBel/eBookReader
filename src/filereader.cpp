@@ -10,8 +10,13 @@
 #include <QFileInfo>
 
 #include <QtCore>
-// Importing for working with directories
 #include <filesystem>
+#include <QQuickView>
+#include <QTextBrowser>
+
+#include <QGuiApplication>
+#include <QTextBrowser>
+#include <QWidget>
 
 FileReader::FileReader(QObject *parent) : QObject(parent)
 {
@@ -20,59 +25,50 @@ FileReader::FileReader(QObject *parent) : QObject(parent)
 
 FileReader::~FileReader(){}
 
-QString text;
-QStringList content;
-
 void FileReader::open(){
 
     //QString name = QFileDialog::getOpenFileName(this, "открыть", QDir::currentPath(), "" );
     //QString name = "/home/defaultuser/Documents/123.fb2"; -- the following code causing an error.
     //В дальнейшем заменить на динамический выбор книги
 
+//    QQuickView view;
+//    view.setSource(QUrl::fromLocalFile("ReadingPage.qml"));
+//    view.show();
+//    QObject *object = view.rootObject();
 
-    QString name = "Documents/123.fb2";
+    QStringList listOfFiles = listFiles("Documents");
+    qDebug() << listOfFiles;
+
+    QString name = listOfFiles[0];
     qDebug()<<name;
     if(name.isEmpty())
         return;
-    QFile file("Documents/123.fb2");
-    if(name.isEmpty())
-            return;
 
-        if(fileExists(name)){
+    if(fileExists(name)){
 
-            QFile f(name);
-            //ui->textBrowser->clear();
+        QFile f(name);
+        //ui->textBrowser->clear();
 
-            if(name.endsWith(".fb2"))
-            {
-                readFb2(&f);
-            }
-
+        if(name.endsWith(".fb2"))
+        {
+            readFb2(&f);
         }
 
-//    QStringList listOfFiles;
-//    std::string path = "Documents";
-//    for (const auto & entry : std::filesystem::directory_iterator(path)){
-//        std::cout << entry.path() << std::endl;
-//        listOfFiles.append(QString::fromStdString(entry.path()));
-//    }
-//    qDebug() << listOfFiles;
+    }
+}
 
+QStringList FileReader::listFiles(std::string pathToFiles){
 
+    QStringList listOfFiles;
 
+    for (const auto & entry : std::filesystem::directory_iterator(pathToFiles)){
+        std::cout << entry.path() << std::endl;
+        listOfFiles.append(QString::fromStdString(entry.path()));
+    }
 
+    //qDebug() << listOfFiles;
+    return listOfFiles;
 
-//    if(fileExists(name)){
-//        qDebug()<<"Файл существует";
-//        QFile f(name);
-//        //ui->textBrowser->clear();
-
-//        if(name.endsWith(".fb2"))
-//        {
-//            readFb2(&f);
-//        }
-
-//    }
 }
 
 bool FileReader::readFb2(QFile *pointerToFile){

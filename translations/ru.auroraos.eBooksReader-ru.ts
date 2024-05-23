@@ -60,7 +60,7 @@
 <context>
     <name>ReadingPage</name>
     <message>
-        <location filename="../qml/pages/ReadingPage.qml" line="28"/>
+        <location filename="../qml/pages/ReadingPage.qml" line="29"/>
         <source>ZV___Приятного чтения___ZV</source>
         <translation type="unfinished"></translation>
     </message>

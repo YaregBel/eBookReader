@@ -20,6 +20,8 @@ public:
     bool readFb2(QFile *pointerToFile);
     bool fileExists(QString path);
 
+    QStringList listFiles(std::string pathToFiles);
+
 private:
 
 signals:
