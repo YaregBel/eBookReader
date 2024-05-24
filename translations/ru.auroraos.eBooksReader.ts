@@ -42,18 +42,43 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="23"/>
-        <source>freakyReader</source>
+        <location filename="../qml/pages/MainPage.qml" line="11"/>
+        <source>Список книг</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="39"/>
-        <source>Ниже будет кнопка</source>
+        <location filename="../qml/pages/MainPage.qml" line="14"/>
+        <source>Пункт меню 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="53"/>
-        <source>Информация о файле.</source>
+        <location filename="../qml/pages/MainPage.qml" line="18"/>
+        <source>Подраздел</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="21"/>
+        <source>Пункт меню 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="25"/>
+        <source>Пункт меню 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="29"/>
+        <source>Меню приложения</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="43"/>
+        <source>Книга %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="50"/>
+        <source>Автор %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

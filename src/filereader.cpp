@@ -1,5 +1,5 @@
 #include "filereader.h"
-
+#include "filecounter.h"
 #include "QDebug"
 #include "QApplication"
 

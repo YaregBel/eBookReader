@@ -2,6 +2,7 @@
 #include <QtQuick>
 #include "class1.h"
 #include "filereader.h"
+#include "filecounter.h"
 
 int main(int argc, char *argv[])
 {
