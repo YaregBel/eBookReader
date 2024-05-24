@@ -39,6 +39,11 @@ Page {
                 id: printText
                 text:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                 //readOnly: true;
+                wrapMode: Text.WordWrap
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width * 0.9 // Устанавливаем ширину в 90% от ширины родителя
+                font.pixelSize: Math.min(parent.width / 20, 24) // Динамически изменяем размер шрифта
+                font.pointSize: parent.width / 40 // Можно использовать pointSize для адаптивности
 
                 Connections {
                         target: fileReader // Указываем целевое соединение
