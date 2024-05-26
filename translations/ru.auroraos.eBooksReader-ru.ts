@@ -42,42 +42,42 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="11"/>
+        <location filename="../qml/pages/MainPage.qml" line="14"/>
         <source>Список книг</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="14"/>
+        <location filename="../qml/pages/MainPage.qml" line="17"/>
         <source>Пункт меню 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="18"/>
+        <location filename="../qml/pages/MainPage.qml" line="21"/>
         <source>Подраздел</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="21"/>
+        <location filename="../qml/pages/MainPage.qml" line="24"/>
         <source>Пункт меню 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="25"/>
+        <location filename="../qml/pages/MainPage.qml" line="28"/>
         <source>Пункт меню 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="29"/>
+        <location filename="../qml/pages/MainPage.qml" line="32"/>
         <source>Меню приложения</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="43"/>
+        <location filename="../qml/pages/MainPage.qml" line="46"/>
         <source>Книга %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="50"/>
+        <location filename="../qml/pages/MainPage.qml" line="53"/>
         <source>Автор %1</source>
         <translation type="unfinished"></translation>
     </message>

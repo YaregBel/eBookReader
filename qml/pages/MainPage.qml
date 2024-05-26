@@ -5,7 +5,10 @@ Page {
     objectName: "mainPage"
     allowedOrientations: Orientation.All
 
+    property int chenchik: 5  // Задаем количество итераций
+
     SilicaListView {
+
           id: mainPageList
           anchors.fill: parent
           header: PageHeader { title: qsTr("Список книг") }
@@ -82,7 +85,7 @@ Page {
                   }
 
           }
-          model: 3
+          model: chenchik
 
           VerticalScrollDecorator { }
       }
