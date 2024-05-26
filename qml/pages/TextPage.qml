@@ -6,65 +6,87 @@ Page {
     objectName: "textPage"
     allowedOrientations: Orientation.All
 
-    FileReader {id:fileReader}
-
+    FileReader { id: fileReader }
 
     Button {
         text: 'Читать'
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: { pageStack.push(textPageComponent)
-            fileReader.open() }
+        onClicked: {
+            pageStack.push(textPageComponent)
+            fileReader.open()
+        }
     }
-
-
-
-
 
     Component {
         id: textPageComponent
         Page {
-            function textFunc(book, number) {
-                var array = textArray(book)
-                console.log(array[number])
-                return array[number]
-
-            }
-
+            id: lowerTextPage
             property int currentPage: 0
             property var pages: []
 
-            function paginateText(book) {
-                    var tags = textArray(book)
-                    var pageSize = 5 // количество тегов на одной странице
-                    var paginated = []
-
-                    for (var i = 0; i < tags.length; i += pageSize) {
-                        paginated.push(tags.slice(i, i + pageSize).join(""))
-                    }
-
-                    return paginated
-                }
-
-                function updatePage() {
-                    if (currentPage >= 0 && currentPage < pages.length) {
-                        printText.text = pages[currentPage]
-                    }
-                }
-
-            function onFileOpened(string){
-                        printText.text = string;
-                }
-
             function textArray(text) {
-                // Регулярное выражение для поиска тегов
-                  const regex = /<[^>]+>[^<]*<\/[^>]+>/g;
-                  // Используем метод match для получения всех совпадений
-                  const tagsArray = text.match(regex);
-                  return tagsArray || []; // Возвращаем пустой массив, если нет совпадений
+                const regex = /<[^>]+>[^<]*<\/[^>]+>/g;
+                return text.match(regex) || [];
+            }
+
+            function paginateText(book) {
+                const tags = textArray(book);
+                const paginated = [];
+                var currentPageContent = "";
+
+                var tempText = Qt.createQmlObject('import QtQuick 2.2; Text { width: ' + (lowerTextPage.width * 0.9) + '; wrapMode: Text.WordWrap; font.pixelSize: ' + Math.min(lowerTextPage.width / 20, 24) + ' }', lowerTextPage);
+
+                for (var i = 0; i < tags.length; i++) {
+                    const newContent = currentPageContent + tags[i];
+                    tempText.text = newContent;
+
+                    if (tempText.contentHeight > lowerTextPage.height) {
+                        const splitIndex = findSplitIndex(tags[i], currentPageContent, tempText);
+                        const firstPart = tags[i].substring(0, splitIndex);
+                        const secondPart = tags[i].substring(splitIndex);
+
+                        paginated.push(currentPageContent + "<p>" + firstPart + "</p>");
+                        currentPageContent = "<p>" + secondPart + "</p>";
+                    } else {
+                        currentPageContent = newContent;
+                    }
+                }
+
+                if (currentPageContent.length > 0) {
+                    paginated.push(currentPageContent);
+                }
+
+                tempText.destroy();
+                return paginated;
+            }
+
+            function findSplitIndex(tag, currentPageContent, tempText) {
+                var low = 0, high = tag.length, splitIndex = high;
+
+                while (low < high) {
+                    const mid = Math.floor((low + high) / 2);
+                    tempText.text = currentPageContent + tag.substring(0, mid);
+
+                    if (tempText.contentHeight > lowerTextPage.height) {
+                        high = mid;
+                    } else {
+                        low = mid + 1;
+                        splitIndex = mid;
+                    }
+                }
+
+                return splitIndex;
+            }
+
+            function updatePage() {
+                if (currentPage >= 0 && currentPage < pages.length) {
+                    printText.text = pages[currentPage];
+                }
             }
 
             SilicaFlickable {
                 objectName: "flickable"
+                id: silicaPage
                 anchors.fill: parent
                 contentHeight: layout.height + Theme.paddingLarge
 
@@ -75,78 +97,62 @@ Page {
 
                     Text {
                         id: printText
-                                        wrapMode: Text.WordWrap
+                        wrapMode: Text.WordWrap
+                        color: "white"
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        width: parent.width * 0.9
+                        font.pixelSize: Math.min(parent.width / 20, 24)
+                        font.pointSize: parent.width / 40
 
-                                        anchors.horizontalCenter: parent.horizontalCenter
-                                        width: parent.width * 0.9 // Устанавливаем ширину в 90% от ширины родителя
-                                        font.pixelSize: Math.min(parent.width / 20, 24) // Динамически изменяем размер шрифта
-                                          font.pointSize: parent.width / 40 // Можно использовать pointSize для адаптивности
-
-
-
-                                        Connections {
-                                                target: fileReader // Указываем целевое соединение
-                                                /* Объявляем и реализуем функцию, как параметр
-                                                 * объекта и с имененем похожим на название сигнала
-                                                 * Разница в том, что добавляем в начале on и далее пишем
-                                                 * с заглавной буквы
-                                                 * */
-                                                onOpened: {
-                                                    pages = paginateText(book)
-                                                    currentPage = 0
-                                                    updatePage()
-
-
-
-                                                }
-                                            }
+                        Connections {
+                            target: fileReader
+                            onOpened: {
+                                pages = paginateText(book);
+                                currentPage = 0;
+                                updatePage();
+                            }
+                        }
                     }
                 }
             }
 
-            // Закрепленное меню внизу
             Rectangle {
-                id: bottomMenu
-                width: parent.width
-                height: Theme.itemSizeMedium
-                color: "green"
-                anchors.bottom: parent.bottom
-
-
-                Row {
-                    anchors.margins: Theme.horizontalPageMargin
-                    anchors.centerIn: parent
-                    spacing: 10
-
-                    Button {
-                        width: bottomMenu.width * 0.25
-                        text: "Меню"
-                        onClicked: pageStack.push(Qt.resolvedUrl("MainPage.qml"))
-                    }
-                    Button {
-                        width: bottomMenu.width * 0.25
-                        text: 'Push'
-                        onClicked: if (currentPage < pages.length - 1) {
-                                       currentPage++
-                                       updatePage()
-                                   }
-
-                    }
-                    Button {
-                        width: bottomMenu.width * 0.25
-                        text: 'Pop'
-                        onClicked: if (currentPage > 0) {
-                                       currentPage--
-                                       updatePage()
-                                   }
+                id: leftClickArea
+                width: parent.width * 0.1
+                height: parent.height
+                color: "transparent"
+                anchors.left: parent.left
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (currentPage > 0) {
+                            currentPage--;
+                            updatePage();
+                        }
                     }
                 }
             }
 
+            Rectangle {
+                id: rightClickArea
+                width: parent.width * 0.1
+                height: parent.height
+                color: "transparent"
+                anchors.right: parent.right
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (currentPage < pages.length - 1) {
+                            currentPage++;
+                            updatePage();
+                        }
+                    }
+                }
+            }
+
+
+
+            }
         }
-
-
     }
 
-
-}

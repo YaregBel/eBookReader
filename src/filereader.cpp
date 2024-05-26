@@ -80,7 +80,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
              }
              bool ok = true;
              QString special;
-             QString description; // описание видео
+             QString description;
              //  настройки отображения
              int fontSize = 20;
              if( QSysInfo::productType() == "android" )
@@ -100,23 +100,29 @@ bool FileReader::readFb2(QFile *pointerToFile){
              {
                  switch( sr.readNext() )
                  {
-                 case QXmlStreamReader::NoToken:
+         case QXmlStreamReader::NoToken:
                      qDebug() << "QXmlStreamReader::NoToken";
                      break;
-                 case QXmlStreamReader::StartDocument:
+         case QXmlStreamReader::StartDocument:
                      book = "<!DOCTYPE HTML><html><body style=\"font-size:%1px; font-family:Sans, Times New Roman;\">";
                      book = book.arg(fontSize);
                      break;
-                 case QXmlStreamReader::EndDocument:
+         case QXmlStreamReader::EndDocument:
                      book.append("</body></html>");
                      break;
-                 case QXmlStreamReader::StartElement:
-                     thisToken.append( sr.name().toString() );
+         case QXmlStreamReader::StartElement:
+                     thisToken.append(sr.name().toString());
 
                      if(thisToken.contains("description")) // ОПИСАНИЕ КНИГИ
                      {
-                         if( thisToken.back() != "image" ) //пропускаем всё кроме обложки
-                             break; // не выводим
+
+                         if( thisToken.back() != "image"
+                                 && thisToken.back() != "first-name"
+                                 && thisToken.back() != "last-name"
+                                 && thisToken.back() != "book-title")
+                             {
+                             break;
+                             }// не выводим
                      }
 
                      if(sr.name().toString() == "title")
@@ -143,9 +149,10 @@ bool FileReader::readFb2(QFile *pointerToFile){
                      }
 
                      opt = " align=\"justify\"";
-                     if(thisToken.contains("title") )
+                     if(thisToken.contains("title") &&  sr.name().toString()=="p")
                      {
-                         opt = " align=\"center\" style=\"font-size:" +QString::number(int(fontSize * 1.5)) + "px\" ";
+                         book.append("<h1>");
+                         qDebug()<<"-----------------------------------------------------------------Нашел заголовок! "+sr.name().toString();
                          if(special == "notes")
                          {
                              opt += (" id=\"" + rId + "\"");
@@ -166,6 +173,12 @@ bool FileReader::readFb2(QFile *pointerToFile){
                      {
                          book.append("<p"+opt +" >");
                          break;
+                     }
+                     if (sr.name().toString()=="title")
+                        {
+                         book.append("<h1>");
+                         qDebug()<<"-----------------------------------------------------------------Нашел заголовок!";
+
                      }
 
                      if( sr.name().toString() == "table" )
@@ -273,12 +286,13 @@ bool FileReader::readFb2(QFile *pointerToFile){
                          break;
                      }
 
-                     if(sr.name().toString() == "text-author" ) // автор текстта
+                     if(sr.name().toString() == "author" ) // автор текстта
                      {
+
                          book.append( "<p align=\"justify\" style=\"margin-left:45px;\">" );
                          break;
                      }
-                     if(sr.name().toString() == "date" ) // автор текстта
+                     if(sr.name().toString() == "date" )
                      {
                          book.append( "<p align=\"justify\" style=\"margin-left:45px;\">" );
                          break;
@@ -303,7 +317,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
                          }
                      }
                      break;
-                 case QXmlStreamReader::EndElement:
+         case QXmlStreamReader::EndElement:
                      if( thisToken.last() == sr.name().toString() )
                      {
                          thisToken.removeLast();
@@ -311,18 +325,19 @@ bool FileReader::readFb2(QFile *pointerToFile){
                      else
                          qDebug() << "error token";
 
-                     if(thisToken.contains("description")) // ОПИСАНИЕ КНИГИ
-                     {
-                         break; // не выводим
-                     }
-
                      if( sr.name().toString() == "p"
                              || sr.name().toString() == "subtitle"
                              || sr.name().toString() == "v"
                              || sr.name().toString() == "date"
-                             || sr.name().toString() == "text-author")
+                             || sr.name().toString() == "author")
                      {
                          book.append("</p>");
+                         break;
+                     }
+                     if( sr.name().toString() == "title")
+                     {
+                         book.append("</h1>");
+                         qDebug()<<"-------------------------------------Закрыл заголовок!";
                          break;
                      }
 
@@ -382,7 +397,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
                          }
                      }
                      break;
-                 case QXmlStreamReader::Characters:
+          case QXmlStreamReader::Characters:
                      if( sr.text().toString() == "" )
                      {
                          //qDebug() << "isEmpty";
@@ -396,6 +411,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
 
                      if(thisToken.contains("description")) // ОПИСАНИЕ КНИГИ
                      {
+
                          description.append(sr.text().toString() + " "); // не выводим
                          break;
                      }
@@ -448,7 +464,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
                              || thisToken.back() == "th"
                              || thisToken.back() == "code"
                              || thisToken.back() == "cite"
-                             || thisToken.back() == "text-author"  // ??
+                             || thisToken.back() == "author"  // ??
                              || thisToken.back() == "date"
                              )
                      {

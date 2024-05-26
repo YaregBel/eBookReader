@@ -6,6 +6,8 @@ Page {
     allowedOrientations: Orientation.All
     backgroundColor: "dark green"
 
+    property int chenchik: 5  // Задаем количество итераций
+
     SilicaListView {
         id: mainPageList
         anchors.fill: parent
@@ -71,9 +73,20 @@ Page {
                     }
                 }
             }
+            Connections {
+                                  target: fileCounter // Указываем целевое соединение
+                                  /* Объявляем и реализуем функцию, как параметр
+                                   * объекта и с имененем похожим на название сигнала
+                                   * Разница в том, что добавляем в начале on и далее пишем
+                                   * с заглавной буквы
+                                   * */
+                                  onListFormed: {
+                                      // Устанавливаем счётчик в текстовый лейбл
+                                  }
+                              }
         }
 
-        model: 100
+        model: chenchik
 
         VerticalScrollDecorator { }
     }
