@@ -12,6 +12,8 @@
 class FileReader: public QObject
 {
     Q_OBJECT
+    //Q_PROPERTY(QStringList filesNames READ listFiles WRITE writeFile NOFIFY listGenerated)
+
 public:
     explicit FileReader(QObject *parent = nullptr);
     ~FileReader();
@@ -20,15 +22,18 @@ public:
     bool readFb2(QFile *pointerToFile);
     bool fileExists(QString path);
 
-    QStringList listFiles(std::string pathToFiles);
+    // Метод затычка
+    void writeFile(int NewFile);
 
 private:
 
 signals:
     void opened(QString book);
+    void listGenerated(QStringList listOfFiles);
 
 public slots:
     void open();
+    QStringList listFiles(QString pathToFiles);
 
 };
 #endif // FILEREADER_H

@@ -1,91 +1,121 @@
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
+import ru.omp.FileReader 1.0
+
 
 Page {
     objectName: "mainPage"
+    id: mainPage
     allowedOrientations: Orientation.All
+    backgroundColor: "dark green"
+
+    property int booksCount;
+
+    signal sendId(int bID);
 
     SilicaListView {
-          id: mainPageList
-          anchors.fill: parent
-          header: PageHeader { title: qsTr("Список книг") }
-          PullDownMenu {
-                     MenuItem {
-                         text: qsTr("Пункт меню 3")
-                         onClicked: console.log("Нажат третий пункт меню")
-                     }
-                     MenuLabel {
-                         text: qsTr("Подраздел")
-                     }
-                     MenuItem {
-                         text: qsTr("Пункт меню 2")
-                         onClicked: console.log("Нажат второй пункт меню")
-                     }
-                     MenuItem {
-                         text: qsTr("Пункт меню 1")
-                         onClicked: console.log("Нажат первый пункт меню")
-                     }
-                     MenuLabel {
-                         text: qsTr("Меню приложения")
-                     }
-                 }
+        id: mainPageList
+        anchors.fill: parent
+        header: PageHeader { title: qsTr("Список книг") }
 
-          delegate: ListItem {
-              onClicked: pageStack.push(Qt.resolvedUrl("ReadingPage.qml"))
-              Flow {
-                  Rectangle {
-                      color: 'red'
-                      height: 60
-                      width: 60
-                  }
-                  Column {
-                      Label {
-                          text: qsTr("Книга %1").arg(model.index + 1)
+        FileReader{id:fileReader}
 
-                          x: Theme.horizontalPageMargin
-                          color: 'gray'
+        // Вызовем метод из плюсов, для считывания списка книг
+        Component.onCompleted: fileReader.listFiles("Documents");
 
-                      }
-                      Label {
-                          text: qsTr("Автор %1").arg(model.index + 1)
-                          x: Theme.horizontalPageMargin
-                          color: 'yellow'
-                      }
+        //fileReader.listFiles("Documents");
 
-                  }
+        Text {
+            id: name1
+            text: qsTr("text")
+
+            Connections {
+                    target: fileReader // Указываем целевое соединение
+                    /* Объявляем и реализуем функцию, как параметр
+                     * объекта и с имененем похожим на название сигнала
+                     * Разница в том, что добавляем в начале on и далее пишем
+                     * с заглавной буквы
+                     * */
+
+                    onListGenerated: {
+                         var list = listOfFiles;
+                         booksCount = list.length
+                         console.log("Первый элемент списка -", list[0])
+                         console.log("Количество элементов в списке -", booksCount)
+                    }
+                }
+        }
 
 
-              }
-              menu: ContextMenu {
-                      MenuLabel {
-                          text: "Контекстное меню"
-                      }
-                      MenuItem {
-                          text: "Выделить жирным"
-                          onClicked: label.font.bold = !label.font.bold
-                      }
-                      MenuItem {
-                          text: "Выделить курсивом"
-                          onClicked: label.font.italic = !label.font.italic
-                      }
-                  }
-              Connections {
-                      target: fileCounter // Указываем целевое соединение
-                      /* Объявляем и реализуем функцию, как параметр
-                       * объекта и с имененем похожим на название сигнала
-                       * Разница в том, что добавляем в начале on и далее пишем
-                       * с заглавной буквы
-                       * */
-                      onListFormed: {
-                          // Устанавливаем счётчик в текстовый лейбл
-                      }
-                  }
+        PullDownMenu {
+            MenuLabel { text: qsTr("Меню приложения") }
+            MenuItem { text: qsTr("Пункт меню 1") }
+            MenuItem { text: qsTr("Пункт меню 2") }
+            MenuLabel { text: qsTr("Подраздел") }
+            MenuItem { text: qsTr("Добавить книгу")}
+        }
 
-          }
-          model: 3
+        delegate: ListItem {
+            width: parent.width
+            objectName: "listItemBook"
+            contentHeight: 200
 
-          VerticalScrollDecorator { }
-      }
+            Row {
+                height: 120
+                anchors.fill: parent
+                anchors.margins: Theme.horizontalPageMargin
+                spacing: 5
+
+                Rectangle {
+                    color: 'red'
+                    width: 60
+                    height: 60
+                }
+
+                Column {
+                    spacing: 2
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    height: contentHeight + (contextMenu.visible ? contextMenu.height : 0)
+                    Label {
+                        text: qsTr("Книга %1").arg(model.index + 1)
+                        color: Theme.primaryColor
+                        font.bold: true
+                    }
+                    Label {
+                        text: qsTr("Автор %1").arg(model.index + 1)
+                        color: Theme.secondaryColor
+                    }
+                    ProgressBar {
+                        minimumValue: 0
+                        maximumValue: 100
+                        value: 50
+                        width: parent.width - 60 - Theme.horizontalPageMargin * 2
+                    }
+                }
+            }
+            menu: ContextMenu {
+                id: contextMenu
+                MenuLabel { text: qsTr("Контекстное меню") }
+                MenuItem {
+                    text: qsTr("Открыть книгу")
+                    onClicked: {
+                        pageStack.push(Qt.resolvedUrl("ReadingPage.qml"));
+                        mainPage.sendId(model.index);
+                    }
+                }
+                MenuItem {
+                    text: qsTr("Удалить")
+                    onClicked: {
+                       delete parent
+                    }
+                }
+            }
+        }
+
+        model: booksCount
 
 
+        VerticalScrollDecorator { }
+
+    }
 }

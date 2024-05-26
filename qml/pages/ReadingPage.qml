@@ -9,9 +9,7 @@ Page {
 
     FileReader {id:fileReader}
 
-    function onFileOpened(string){
-            printText.text = string;
-    }
+    property int receivedID: 1;
 
 
     SilicaFlickable {
@@ -54,10 +52,22 @@ Page {
                          * */
                         onOpened: {
                             printText.text = book// Устанавливаем счётчик в текстовый лейбл
+                            console.log("Полученный ID:", receivedID)
                         }
                     }
             }
 
+//            Text{
+//                id: text123
+//                text: receivedID
+//            }
+
         }
+
+        function handlerSendID(message) {
+                receivedID = message;
+                console.log("ПОЛУЧИЛИ ID", message)
+            }
+
     }
 }
