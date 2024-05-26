@@ -4,14 +4,16 @@ import Sailfish.Silica 1.0
 Page {
     objectName: "mainPage"
     allowedOrientations: Orientation.All
-    backgroundColor: "dark green"
+    backgroundColor: "#704214"
 
     property int chenchik: 5  // Задаем количество итераций
 
     SilicaListView {
         id: mainPageList
         anchors.fill: parent
-        header: PageHeader { title: qsTr("Список книг") }
+        header: PageHeader { title: qsTr("Список книг")
+        titleColor: Theme.primaryColor
+        }
 
         PullDownMenu {
             MenuLabel { text: qsTr("Меню приложения") }
@@ -32,11 +34,7 @@ Page {
                 anchors.margins: Theme.horizontalPageMargin
                 spacing: 5
 
-                Rectangle {
-                    color: 'red'
-                    width: 60
-                    height: 60
-                }
+
 
                 Column {
                     spacing: 2
@@ -69,21 +67,21 @@ Page {
                 MenuItem {
                     text: qsTr("Удалить")
                     onClicked: {
-                       delete parent
+                        delete this
                     }
                 }
             }
             Connections {
-                                  target: fileCounter // Указываем целевое соединение
-                                  /* Объявляем и реализуем функцию, как параметр
+                target: fileCounter // Указываем целевое соединение
+                /* Объявляем и реализуем функцию, как параметр
                                    * объекта и с имененем похожим на название сигнала
                                    * Разница в том, что добавляем в начале on и далее пишем
                                    * с заглавной буквы
                                    * */
-                                  onListFormed: {
-                                      // Устанавливаем счётчик в текстовый лейбл
-                                  }
-                              }
+                onListFormed: {
+                    // Устанавливаем счётчик в текстовый лейбл
+                }
+            }
         }
 
         model: chenchik
