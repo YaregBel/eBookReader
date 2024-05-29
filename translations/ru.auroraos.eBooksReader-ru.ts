@@ -42,26 +42,81 @@
 <context>
     <name>MainPage</name>
     <message>
+        <location filename="../qml/pages/MainPage.qml" line="14"/>
+        <source>Список книг</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/MainPage.qml" line="23"/>
-        <source>freakyReader</source>
+        <source>Пункт меню 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="39"/>
-        <source>Ниже будет кнопка</source>
+        <location filename="../qml/pages/MainPage.qml" line="22"/>
+        <source>Подраздел</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="53"/>
-        <source>Информация о файле.</source>
+        <location filename="../qml/pages/MainPage.qml" line="21"/>
+        <source>Пункт меню 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="20"/>
+        <source>Пункт меню 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="19"/>
+        <source>Меню приложения</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="44"/>
+        <source>Книга %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="49"/>
+        <source>Автор %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="62"/>
+        <source>Контекстное меню</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="64"/>
+        <source>Открыть книгу</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="68"/>
+        <source>Удалить</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ReadingPage</name>
+    <name>TextPage</name>
     <message>
-        <location filename="../qml/pages/ReadingPage.qml" line="20"/>
-        <source>ZV___Приятного чтения___ZV</source>
+        <location filename="../qml/pages/TextPage.qml" line="101"/>
+        <source>Меню</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TextPage.qml" line="103"/>
+        <source>Вернуться к списку книг</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TextPage.qml" line="106"/>
+        <source>Пункт меню 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TextPage.qml" line="107"/>
+        <source>Изменить размер текста</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
