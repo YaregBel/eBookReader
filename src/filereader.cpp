@@ -1,5 +1,4 @@
 #include "filereader.h"
-#include "filecounter.h"
 #include "QDebug"
 #include "QApplication"
 
@@ -27,15 +26,6 @@ FileReader::~FileReader(){}
 
 void FileReader::open(){
 
-    //QString name = QFileDialog::getOpenFileName(this, "открыть", QDir::currentPath(), "" );
-    //QString name = "/home/defaultuser/Documents/123.fb2"; -- the following code causing an error.
-    //В дальнейшем заменить на динамический выбор книги
-
-//    QQuickView view;
-//    view.setSource(QUrl::fromLocalFile("ReadingPage.qml"));
-//    view.show();
-//    QObject *object = view.rootObject();
-
     QStringList listOfFiles = listFiles("Documents");
     qDebug() << listOfFiles;
 
@@ -47,7 +37,6 @@ void FileReader::open(){
     if(fileExists(name)){
 
         QFile f(name);
-        //ui->textBrowser->clear();
 
         if(name.endsWith(".fb2"))
         {
@@ -66,7 +55,6 @@ QStringList FileReader::listFiles(std::string pathToFiles){
         listOfFiles.append(QString::fromStdString(entry.path()));
     }
 
-    //qDebug() << listOfFiles;
     return listOfFiles;
 
 }
@@ -81,7 +69,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
              bool ok = true;
              QString special;
              QString description;
-             //  настройки отображения
+
              int fontSize = 20;
              if( QSysInfo::productType() == "android" )
                  fontSize *= 1.8;
@@ -152,11 +140,11 @@ bool FileReader::readFb2(QFile *pointerToFile){
                      if(thisToken.contains("title") &&  sr.name().toString()=="p")
                      {
                          book.append("<h1>");
-                         qDebug()<<"-----------------------------------------------------------------Нашел заголовок! "+sr.name().toString();
+
                          if(special == "notes")
                          {
                              opt += (" id=\"" + rId + "\"");
-                             qDebug() << "id text" << rId;
+
                          }
                      }
                      if(thisToken.contains("subtitle") )
@@ -177,7 +165,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
                      if (sr.name().toString()=="title")
                         {
                          book.append("<h1>");
-                         qDebug()<<"-----------------------------------------------------------------Нашел заголовок!";
+
 
                      }
 
@@ -412,7 +400,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
                      if(thisToken.contains("description")) // ОПИСАНИЕ КНИГИ
                      {
 
-                         description.append(sr.text().toString() + " "); // не выводим
+                         description.append(sr.text().toString() + " ");
                          break;
                      }
 
@@ -441,7 +429,7 @@ bool FileReader::readFb2(QFile *pointerToFile){
 
                      if( thisToken.contains("title") ) // формируем содержание
                      {
-                         content.back() += " " + sr.text().toString();//content->back()=="" ? "" : " " +
+                         content.back() += " " + sr.text().toString();
                          qDebug() << "title" << sr.text().toString();
                      }
 
@@ -488,7 +476,6 @@ bool FileReader::readFb2(QFile *pointerToFile){
                              || thisToken.back() == "poem"
                              || thisToken.back() == "stanza")
                      {
-                         //book->append( sr.text().toString() );
                          break;
                      }
                      if(thisToken.back() == "annotation")
@@ -512,13 +499,6 @@ bool FileReader::readFb2(QFile *pointerToFile){
                  }
              }
              f->close();
-             book.append("<h1> Содержание </h1>");
-             book.append("<ol>");
-             for (auto item : content)
-             {
-               book.append("<li>"+ item + "</li>");
-             }
-             book.append("</ol>");
              emit opened(book);
              return ok;
 }
@@ -526,7 +506,6 @@ bool FileReader::readFb2(QFile *pointerToFile){
 bool FileReader::fileExists(QString path) {
     qDebug()<<"Условие вызвано"+path;
     QFileInfo check_file(path);
-    // check if file exists and if yes: Is it really a file and no directory?
     if (check_file.exists() && check_file.isFile()) {
         qDebug()<<"Ага";
         return true;
