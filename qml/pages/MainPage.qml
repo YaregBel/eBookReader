@@ -1,5 +1,6 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
+import ru.omp.FileReader 1.0
 
 Page {
     objectName: "mainPage"
@@ -8,12 +9,32 @@ Page {
 
     property int chenchik: 5  // Задаем количество итераций
 
+    property int booksCount;
+
+    Component.onCompleted: fileReader.listFiles("Documents");
+
+    Connections {
+        target: fileReader
+
+        onListGenerated: {
+            var list = listOfFiles;
+            booksCount = list.length
+            console.log("Первый элемент списка -", list[0])
+            console.log("Количество элементов в списке -", booksCount)
+        }
+    }
+
+
+
     SilicaListView {
         id: mainPageList
         anchors.fill: parent
         header: PageHeader { title: qsTr("Список книг")
         titleColor: Theme.primaryColor
         }
+
+        FileReader{id:fileReader}
+
 
         PullDownMenu {
             MenuLabel { text: qsTr("Меню приложения") }
@@ -84,7 +105,7 @@ Page {
             }
         }
 
-        model: chenchik
+        model: booksCount
 
         VerticalScrollDecorator { }
     }

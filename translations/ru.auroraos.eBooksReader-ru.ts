@@ -42,57 +42,57 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="14"/>
+        <location filename="../qml/pages/MainPage.qml" line="32"/>
         <source>Список книг</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="23"/>
+        <location filename="../qml/pages/MainPage.qml" line="44"/>
         <source>Пункт меню 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="22"/>
+        <location filename="../qml/pages/MainPage.qml" line="43"/>
         <source>Подраздел</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="21"/>
+        <location filename="../qml/pages/MainPage.qml" line="42"/>
         <source>Пункт меню 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="20"/>
+        <location filename="../qml/pages/MainPage.qml" line="41"/>
         <source>Пункт меню 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="19"/>
+        <location filename="../qml/pages/MainPage.qml" line="40"/>
         <source>Меню приложения</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="44"/>
+        <location filename="../qml/pages/MainPage.qml" line="65"/>
         <source>Книга %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="49"/>
+        <location filename="../qml/pages/MainPage.qml" line="70"/>
         <source>Автор %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="62"/>
+        <location filename="../qml/pages/MainPage.qml" line="83"/>
         <source>Контекстное меню</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="64"/>
+        <location filename="../qml/pages/MainPage.qml" line="85"/>
         <source>Открыть книгу</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="68"/>
+        <location filename="../qml/pages/MainPage.qml" line="89"/>
         <source>Удалить</source>
         <translation type="unfinished"></translation>
     </message>
@@ -111,11 +111,6 @@
     </message>
     <message>
         <location filename="../qml/pages/TextPage.qml" line="106"/>
-        <source>Пункт меню 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/TextPage.qml" line="107"/>
         <source>Изменить размер текста</source>
         <translation type="unfinished"></translation>
     </message>

@@ -20,15 +20,19 @@ public:
     bool readFb2(QFile *pointerToFile);
     bool fileExists(QString path);
 
-    QStringList listFiles(std::string pathToFiles);
+    //QStringList listFiles(std::string pathToFiles);
 
 private:
 
 signals:
     void opened(QString book);
+    void listGenerated(QStringList listOfFiles);
+
 
 public slots:
     void open();
+    QStringList listFiles(QString pathToFiles);
+
 
 };
 #endif // FILEREADER_H

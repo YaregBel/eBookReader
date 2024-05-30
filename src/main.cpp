@@ -1,6 +1,5 @@
 #include <auroraapp.h>
 #include <QtQuick>
-#include "class1.h"
 #include "filereader.h"
 
 int main(int argc, char *argv[])
@@ -15,7 +14,7 @@ int main(int argc, char *argv[])
 
     // Создаем контекст приложения и устанавливаем в него объект через setProperty()
     QQmlContext *context = view->rootContext();
-    context->engine()->rootContext()->setContextProperty("class1Object", &class1Object);
+    //context->engine()->rootContext()->setContextProperty("class1Object", &class1Object);
 
     view->setSource(Aurora::Application::pathTo(QStringLiteral("qml/eBooksReader.qml")));
     //view.rootContext();

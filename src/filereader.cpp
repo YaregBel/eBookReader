@@ -46,18 +46,23 @@ void FileReader::open(){
     }
 }
 
-QStringList FileReader::listFiles(std::string pathToFiles){
+QStringList FileReader::listFiles(QString path){
 
     QStringList listOfFiles;
+    std::string pathToFiles = path.toStdString();
 
     for (const auto & entry : std::filesystem::directory_iterator(pathToFiles)){
         std::cout << entry.path() << std::endl;
         listOfFiles.append(QString::fromStdString(entry.path()));
     }
 
+    emit listGenerated(listOfFiles);
+
+    //qDebug() << listOfFiles;
     return listOfFiles;
 
 }
+
 
 bool FileReader::readFb2(QFile *pointerToFile){
     QFile *f = pointerToFile;
