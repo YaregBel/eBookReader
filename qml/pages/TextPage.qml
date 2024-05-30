@@ -9,12 +9,13 @@ Page {
     allowedOrientations: Orientation.All
     property int currentPage: 0
     property var pages: []
-    property int fontSize: 10
+    property int fontSize: 24
+    property var boook
+    property string currentColorScheme: "light"
 
     Component.onCompleted: {
         fileReader.open()
     }
-
 
     function textArray(text) {
         const regex = /<[^>]+>(.*?)<\/[^>]+>/g;
@@ -91,6 +92,19 @@ Page {
         }
     }
 
+    function applyColorScheme() {
+        if (currentColorScheme === "light") {
+            lowerTextPage.backgroundColor = "white";
+            printText.color = "black";
+        } else if (currentColorScheme === "dark") {
+            lowerTextPage.backgroundColor = "black";
+            printText.color = "white";
+        } else if (currentColorScheme === "sepia") {
+            lowerTextPage.backgroundColor = "#f4ecd8";
+            printText.color = "#5b4636";
+        }
+    }
+
     SilicaFlickable {
         objectName: "flickable"
         id: silicaPage
@@ -115,27 +129,49 @@ Page {
                         text: '-'
                         width: fontSizeMenu.width * 0.25
                         onClicked: {
-
                             fontSize--
                             fontSizeLabel.text = fontSize
-
+                            pages = paginateText(boook)
+                            updatePage()
                         }
                     }
                     Label {
                         id: fontSizeLabel
                         text: fontSize
                     }
-
                     Button {
                         text: '+'
                         width: fontSizeMenu.width * 0.25
                         onClicked: {
                             fontSize++
                             fontSizeLabel.text = fontSize
+                            pages = paginateText(boook)
+                            updatePage()
                         }
                     }
                 }
-
+            }
+            MenuLabel { text: qsTr("Цветовая схема") }
+            MenuItem {
+                text: qsTr("Светлая")
+                onClicked: {
+                    currentColorScheme = "light"
+                    applyColorScheme()
+                }
+            }
+            MenuItem {
+                text: qsTr("Темная")
+                onClicked: {
+                    currentColorScheme = "dark"
+                    applyColorScheme()
+                }
+            }
+            MenuItem {
+                text: qsTr("Сепия")
+                onClicked: {
+                    currentColorScheme = "sepia"
+                    applyColorScheme()
+                }
             }
         }
 
@@ -144,10 +180,11 @@ Page {
             objectName: "layout"
             width: parent.width
 
+
             Text {
                 id: printText
                 wrapMode: Text.WordWrap
-                color: "white"
+                color: "black"
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width * 0.9
                 font.pixelSize: fontSize
@@ -158,7 +195,8 @@ Page {
                     onOpened: {
                         pages = paginateText(book);
                         currentPage = 0;
-                        updatePage();
+                        updatePage(pages);
+                        boook = book
                         console.log(pages)
                     }
                 }
@@ -199,9 +237,4 @@ Page {
             }
         }
     }
-
-
-
 }
-
-

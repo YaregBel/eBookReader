@@ -100,23 +100,38 @@
 <context>
     <name>TextPage</name>
     <message>
-        <location filename="../qml/pages/TextPage.qml" line="101"/>
+        <location filename="../qml/pages/TextPage.qml" line="115"/>
         <source>Меню</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TextPage.qml" line="103"/>
+        <location filename="../qml/pages/TextPage.qml" line="117"/>
         <source>Вернуться к списку книг</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TextPage.qml" line="106"/>
-        <source>Пункт меню 2</source>
+        <location filename="../qml/pages/TextPage.qml" line="120"/>
+        <source>Изменить размер текста</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TextPage.qml" line="107"/>
-        <source>Изменить размер текста</source>
+        <location filename="../qml/pages/TextPage.qml" line="154"/>
+        <source>Цветовая схема</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TextPage.qml" line="156"/>
+        <source>Светлая</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TextPage.qml" line="163"/>
+        <source>Темная</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TextPage.qml" line="170"/>
+        <source>Сепия</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
